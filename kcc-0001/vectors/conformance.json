@@ -1,0 +1,328 @@
+{
+  "kcc": 1,
+  "format_version": 1,
+  "byte_string_format": {
+    "literal": "A hex field is a complete byte string encoded as lowercase hexadecimal.",
+    "repeated": "An object with repeat_hex and count repeats the one-byte repeat_hex value count times.",
+    "prefixed_payload": "An encoding with encoded_prefix_hex and payload set to unchanged concatenates that prefix with the vector's payload."
+  },
+  "hash_function": [
+    {
+      "id": "unkeyed-empty",
+      "input_hex": "",
+      "hash_hex": "af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262"
+    },
+    {
+      "id": "unkeyed-kcc-1",
+      "input_hex": "4b43432d31",
+      "hash_hex": "4573a3e94e92dee5d41e7ba2c77d6f70a54829760d21c11ca25705374aa7f777"
+    },
+    {
+      "id": "keyed-empty",
+      "input_hex": "",
+      "key_hex": "4b43432d31",
+      "key32_hex": "4b43432d31000000000000000000000000000000000000000000000000000000",
+      "hash_hex": "e98d9a91064b431e242efd29780956e5736812bdb4cd6f2a7e388e80bb61f3fb"
+    }
+  ],
+  "canonical_type_names": [
+    { "type": "integer", "type_name": "int" },
+    { "type": "boolean", "type_name": "bool" },
+    { "type": "byte", "type_name": "byte" },
+    { "type": "UTF-8 string", "type_name": "string" },
+    { "type": "32-byte public key", "type_name": "pubkey" },
+    { "type": "65-byte transaction signature", "type_name": "sig" },
+    { "type": "64-byte data signature", "type_name": "datasig" },
+    { "type": "fixed byte string of length 32", "type_name": "byte[32]" },
+    { "type": "fixed array of three booleans", "type_name": "bool[3]" },
+    { "type": "dynamic array of integers", "type_name": "int[]" },
+    { "type": "record named Transfer", "type_name": "Transfer" }
+  ],
+  "data_pushes": [
+    {
+      "id": "empty",
+      "payload": { "hex": "" },
+      "push_minimal": { "hex": "00" },
+      "push_explicit": { "hex": "00" }
+    },
+    {
+      "id": "op-1",
+      "payload": { "hex": "01" },
+      "push_minimal": { "hex": "51" },
+      "push_explicit": { "hex": "0101" }
+    },
+    {
+      "id": "op-16",
+      "payload": { "hex": "10" },
+      "push_minimal": { "hex": "60" },
+      "push_explicit": { "hex": "0110" }
+    },
+    {
+      "id": "op-1negate",
+      "payload": { "hex": "81" },
+      "push_minimal": { "hex": "4f" },
+      "push_explicit": { "hex": "0181" }
+    },
+    {
+      "id": "one-byte-data",
+      "payload": { "hex": "11" },
+      "push_minimal": { "hex": "0111" },
+      "push_explicit": { "hex": "0111" }
+    },
+    {
+      "id": "op-data-75",
+      "payload": { "repeat_hex": "ab", "count": 75 },
+      "push_minimal": { "encoded_prefix_hex": "4b", "payload": "unchanged" },
+      "push_explicit": { "encoded_prefix_hex": "4b", "payload": "unchanged" }
+    },
+    {
+      "id": "op-pushdata1-76",
+      "payload": { "repeat_hex": "ab", "count": 76 },
+      "push_minimal": { "encoded_prefix_hex": "4c4c", "payload": "unchanged" },
+      "push_explicit": { "encoded_prefix_hex": "4c4c", "payload": "unchanged" }
+    },
+    {
+      "id": "op-pushdata1-255",
+      "payload": { "repeat_hex": "ab", "count": 255 },
+      "push_minimal": { "encoded_prefix_hex": "4cff", "payload": "unchanged" },
+      "push_explicit": { "encoded_prefix_hex": "4cff", "payload": "unchanged" }
+    },
+    {
+      "id": "op-pushdata2-256",
+      "payload": { "repeat_hex": "ab", "count": 256 },
+      "push_minimal": { "encoded_prefix_hex": "4d0001", "payload": "unchanged" },
+      "push_explicit": { "encoded_prefix_hex": "4d0001", "payload": "unchanged" }
+    },
+    {
+      "id": "op-pushdata2-65535",
+      "payload": { "repeat_hex": "ab", "count": 65535 },
+      "push_minimal": { "encoded_prefix_hex": "4dffff", "payload": "unchanged" },
+      "push_explicit": { "encoded_prefix_hex": "4dffff", "payload": "unchanged" }
+    },
+    {
+      "id": "op-pushdata4-65536",
+      "payload": { "repeat_hex": "ab", "count": 65536 },
+      "push_minimal": { "encoded_prefix_hex": "4e00000100", "payload": "unchanged" },
+      "push_explicit": { "encoded_prefix_hex": "4e00000100", "payload": "unchanged" }
+    }
+  ],
+  "scalar_encodings": [
+    {
+      "type": "int",
+      "value": 17,
+      "standalone_argument_hex": "0111",
+      "state_payload_hex": "1100000000000000"
+    },
+    {
+      "type": "int",
+      "value": -5,
+      "standalone_argument_hex": "0185",
+      "state_payload_hex": "0500000000000080"
+    },
+    {
+      "type": "bool",
+      "value": false,
+      "standalone_argument_hex": "00",
+      "state_payload_hex": "00"
+    },
+    {
+      "type": "bool",
+      "value": true,
+      "standalone_argument_hex": "51",
+      "state_payload_hex": "01"
+    },
+    {
+      "type": "byte",
+      "value_hex": "01",
+      "standalone_argument_hex": "51",
+      "state_payload_hex": "01"
+    },
+    {
+      "type": "string",
+      "value": "Kaspa",
+      "standalone_argument_hex": "054b61737061",
+      "state_payload_hex": null
+    }
+  ],
+  "composite_encodings": [
+    {
+      "id": "fixed-bool-array",
+      "type": "bool[3]",
+      "value": [false, true, true],
+      "payload_hex": "000101",
+      "argument_hex": "03000101"
+    },
+    {
+      "id": "dynamic-bool-array",
+      "type": "bool[]",
+      "value": [false, true],
+      "payload_hex": "0001",
+      "argument_hex": "020001"
+    },
+    {
+      "id": "record",
+      "record": {
+        "name": "Pair",
+        "fields": [
+          { "name": "count", "type": "int" },
+          { "name": "enabled", "type": "bool" }
+        ]
+      },
+      "value": { "count": 17, "enabled": true },
+      "lowered_argument_hex": ["0111", "51"],
+      "combined_hex": "011151"
+    },
+    {
+      "id": "record-array",
+      "type": "Point[2]",
+      "record": {
+        "name": "Point",
+        "fields": [
+          { "name": "id", "type": "byte[2]" },
+          { "name": "enabled", "type": "bool" }
+        ]
+      },
+      "value": [
+        { "id_hex": "aabb", "enabled": true },
+        { "id_hex": "ccdd", "enabled": false }
+      ],
+      "grouped_argument_hex": ["04aabbccdd", "020100"],
+      "combined_hex": "04aabbccdd020100"
+    }
+  ],
+  "dispatch_and_arguments": {
+    "entrypoint_name": "step",
+    "argument_types": ["int", "byte[4]", "bool", "byte"],
+    "function_signature_utf8_hex": "7374657028696e742c627974655b345d2c626f6f6c2c6279746529",
+    "dispatch_tag_hex": "2c49ed65",
+    "argument_values": [17, "01020304", true, "01"],
+    "argument_encodings_hex": ["0111", "0401020304", "51", "51"],
+    "dispatch_tag_push_hex": "042c49ed65",
+    "combined_hex": "011104010203045151042c49ed65"
+  },
+  "zero_argument_dispatch": {
+    "entrypoint_name": "tick",
+    "argument_types": [],
+    "function_signature_utf8_hex": "7469636b2829",
+    "dispatch_tag_hex": "161bd7ee",
+    "push_arguments_hex": "",
+    "dispatch_tag_push_hex": "04161bd7ee"
+  },
+  "p2sh_envelope": {
+    "redeem_script_hex": "51",
+    "blake2b_256_hex": "ce57216285125006ec18197bd8184221cefa559bb0798410d99a5bba5b07cd1d",
+    "script_public_key": {
+      "version": 0,
+      "script_hex": "aa20ce57216285125006ec18197bd8184221cefa559bb0798410d99a5bba5b07cd1d87"
+    },
+    "signature_script_hex": "011104010203045151042c49ed650151"
+  },
+  "state_encoding": {
+    "fields": [
+      {
+        "name": "key",
+        "type": "pubkey",
+        "value_hex": "0707070707070707070707070707070707070707070707070707070707070707",
+        "encoded_hex": "200707070707070707070707070707070707070707070707070707070707070707"
+      },
+      {
+        "name": "counter",
+        "type": "int",
+        "value": -5,
+        "encoded_hex": "080500000000000080"
+      },
+      {
+        "name": "enabled",
+        "type": "bool",
+        "value": true,
+        "encoded_hex": "0101"
+      }
+    ],
+    "encoded_length": 44,
+    "encoded_hex": "2007070707070707070707070707070707070707070707070707070707070707070805000000000000800101"
+  },
+  "template_hashes": [
+    {
+      "prefix_hex": "",
+      "suffix_hex": "",
+      "hash_hex": "e572dff82304700b856a555ac3a4558d0df3646a3727816500270a93c66aac1e"
+    },
+    {
+      "prefix_hex": "61",
+      "suffix_hex": "6263",
+      "hash_hex": "405e183e2494cdbe2df89349cc0ffa5b77fb885ad97a1d5660ecd0692ef8142a"
+    },
+    {
+      "prefix_hex": "6162",
+      "suffix_hex": "63",
+      "hash_hex": "a0968c014f3fc7bd1a7d9a8d1ad1177eb379bd2f05e56309eb4e20347c5e7eba"
+    },
+    {
+      "prefix_hex": "00ff",
+      "suffix_hex": "100080",
+      "hash_hex": "6616a66757315de0221cb2acba729113cebde31f8d3ca7fa93878a0584b96905"
+    }
+  ],
+  "template_views": {
+    "program_hex": "5102aabb010102ccdd75",
+    "state_start": 1,
+    "state_len": 8,
+    "fields": [
+      { "name": "a", "type": "byte[2]", "encoded_hex": "02aabb" },
+      { "name": "b", "type": "bool", "encoded_hex": "0101" },
+      { "name": "c", "type": "byte[2]", "encoded_hex": "02ccdd" }
+    ],
+    "views": [
+      {
+        "fields": ["a", "b"],
+        "start": 1,
+        "len": 5,
+        "prefix_hex": "51",
+        "encoded_state_hex": "02aabb0101",
+        "suffix_hex": "02ccdd75",
+        "template_hash_hex": "2e2c28131760a1c0942842f8b54fe686321d0080f5161fa803e27af6a15799a4"
+      },
+      {
+        "fields": ["b", "c"],
+        "start": 4,
+        "len": 5,
+        "prefix_hex": "5102aabb",
+        "encoded_state_hex": "010102ccdd",
+        "suffix_hex": "75",
+        "template_hash_hex": "0eb10580bcb608ab9efab6e256d4bac6671d724a72951a058d37b42fa205c1ee"
+      },
+      {
+        "fields": ["b"],
+        "start": 4,
+        "len": 2,
+        "prefix_hex": "5102aabb",
+        "encoded_state_hex": "0101",
+        "suffix_hex": "02ccdd75",
+        "template_hash_hex": "7b96ebb8023373bfe7aa81f7db8e0e0d9ce492d2b0382fb5586ac60beea8ed12"
+      }
+    ]
+  },
+  "continuation_program": {
+    "view_fields": ["b"],
+    "prefix_hex": "5102aabb",
+    "next_state": { "b": false },
+    "encoded_next_state_hex": "0100",
+    "suffix_hex": "02ccdd75",
+    "redeem_script_hex": "5102aabb010002ccdd75",
+    "blake2b_256_hex": "964c61dd43eec7b7565229a15df15e1d8e9afbbedcc019eaa1eda7b86d9831ac",
+    "script_public_key": {
+      "version": 0,
+      "script_hex": "aa20964c61dd43eec7b7565229a15df15e1d8e9afbbedcc019eaa1eda7b86d9831ac87"
+    }
+  },
+  "hash_committed_virtual_element": {
+    "record": {
+      "fields": [
+        { "type": "int", "value": -5 },
+        { "type": "bool", "value": true }
+      ]
+    },
+    "packed_hex": "050000000000008001",
+    "commitment_hex": "15e006c7c506fb20b6de9573e31bdc47591e937c38f9fcf31cdfabe55d122bda"
+  }
+}
